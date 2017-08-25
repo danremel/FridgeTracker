@@ -34,6 +34,6 @@ Food.create(fridge_id: tank.id, name: "Almond-based Ricotta Cheese", weight: 2, 
 Food.create(fridge_id: tank.id, name: "Asparagus", weight: 1, is_vegan: true)
 
 # tank's Drink list
-Drink.create(fridge_id: tank.id, name: "Beer", size: 16, is_alcoholic: true)
-Drink.create(fridge_id: tank.id, name: "Wine Cooler", size: 8, is_alcoholic: false)
+Drink.create(fridge_id: tank.id, name: "Beer", size: 32, is_alcoholic: true)
+Drink.create(fridge_id: tank.id, name: "Wine Cooler", size: 8, is_alcoholic: true)
 Drink.create(fridge_id: tank.id, name: "Coke", size: 24, is_alcoholic: false)

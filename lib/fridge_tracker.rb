@@ -8,7 +8,7 @@ puts "C) Delete a Fridge"
 puts "D) View all food in a fridge"
 puts "E) Add a food item to a fridge"
 puts "F) Eat a food item from a fridge (delete it)"
-# puts "G) View all drink items in a specific fridge"
+puts "G) View all drink items in a specific fridge"
 # puts "H) Add a drink item to a fridge"
 # puts "I) Consume PART of a drink from a fridge (update its size in ounces)"
 # puts "J) Consume ALL of a drink from a fridge (delete it)"
@@ -53,17 +53,19 @@ end
 
 # Option D
 if option.upcase == 'D'
-    puts "Showing all food:"
-    Food.all.map do |food|
-        puts "Name: " + food.name.to_s
-        puts "Weight: " + food.weight.to_s + " lbs"
-        if food.is_vegan == true
-            puts "Vegan: Yes"
-        else puts "Vegan: No"
+    # puts "What fridge do you want to look into?"
+    # if Food_fridge_id = gets.chomp
+        # puts "Showing all food in fridge " + Food_fridge_id + ":"
+        Food.all.map do |food|
+            puts "Name: " + food.name.to_s
+            puts "Weight: " + food.weight.to_s + " lbs"
+            if food.is_vegan == true
+                puts "Vegan: Yes"
+            else puts "Vegan: No"
+            end
+            puts "_ _ _ _ _ _"
         end
-        # puts "Added to the fridge at: " + food.timestamps.to_s
-        puts "_ _ _ _ _ _"
-    end
+    # end
 end
 
 # Option E
@@ -87,7 +89,7 @@ if option.upcase == 'E'
     end
 end
 
-#Option F
+# Option F
 if option.upcase == 'F'
     puts "What do you want to take out of the fridge?"
     Food_name = gets.chomp
@@ -97,3 +99,16 @@ if option.upcase == 'F'
     end
 end
 
+# Option G
+if option.upcase == 'G'
+    Drink.all.map do |drink|
+        puts drink.name.to_s
+        puts drink.size.to_s + " oz."
+        if drink.is_alcoholic == true
+            puts "Alcoholic: Yes"
+        else
+            puts "Alcoholic: No"
+        end
+        puts "_ _ _ _ _ _ _"
+    end
+end
