@@ -9,9 +9,9 @@ puts "D) View all food in a fridge"
 puts "E) Add a food item to a fridge"
 puts "F) Eat a food item from a fridge (delete it)"
 puts "G) View all drink items in a specific fridge"
-# puts "H) Add a drink item to a fridge"
+puts "H) Add a drink item to a fridge"
 # puts "I) Consume PART of a drink from a fridge (update its size in ounces)"
-# puts "J) Consume ALL of a drink from a fridge (delete it)"
+puts "J) Consume ALL of a drink from a fridge (delete it)"
 option = gets.chomp
 puts "You selected #{option}"
 
@@ -57,6 +57,7 @@ if option.upcase == 'D'
     # if Food_fridge_id = gets.chomp
         # puts "Showing all food in fridge " + Food_fridge_id + ":"
         Food.all.map do |food|
+            puts "Fridge ID = " + food.fridge_id.to_s
             puts "Name: " + food.name.to_s
             puts "Weight: " + food.weight.to_s + " lbs"
             if food.is_vegan == true
@@ -102,6 +103,7 @@ end
 # Option G
 if option.upcase == 'G'
     Drink.all.map do |drink|
+        puts "Fridge ID = " + drink.fridge_id.to_s        
         puts drink.name.to_s
         puts drink.size.to_s + " oz."
         if drink.is_alcoholic == true
@@ -111,4 +113,46 @@ if option.upcase == 'G'
         end
         puts "_ _ _ _ _ _ _"
     end
+end
+
+# Option H
+if option.upcase == 'H'
+    puts "What fridge do you want to put the drink in?"
+    Drink_fridge_id = gets.chomp
+    puts "What drink would you like to add to the fridge?"
+    Drink_name = gets.chomp
+    puts "What size is the drink? (Fl Oz)"
+    Drink_size = gets.chomp
+    puts "Is the drink alcoholic? Y/N"
+    if gets.chomp == 'Y'
+        Drink_is_alcoholic = true
+    else
+        Drink_is_alcoholic = false
+    end
+    Drink.create do |drink|
+        drink.fridge_id = Drink_fridge_id
+        drink.name = Drink_name
+        drink.size = Drink_size
+        drink.is_alcoholic = Drink_is_alcoholic
+    end
+end
+
+# Option I
+# if option.upcase == 'I'
+#     puts "What do you want to take a sip of?"
+#     Drink_name = gets.chomp
+#     puts "How much would you like do drink? (Fl Oz)"
+#     sip = gets.chomp
+#     Drink_size.update(Drink_size - sip)
+# end
+
+# Option J
+if option.upcase == 'J'
+    puts "What do you want to chug from the fridge?"
+    Drink_name = gets.chomp
+    puts "Are you sure you can handle it? Y/N"
+    if gets.chomp == 'Y'
+        Drink.find_by_name(Drink_name).destroy
+    end
+    puts "BURRRRP!"
 end
